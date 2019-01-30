@@ -57,7 +57,6 @@ app.get('/current', users.getCurrentUserById); //For testing purposes.
 app.get('/users', users.getAllUsers);
 app.post('/users', users.createUser);
 app.get('/users/:id', users.getUserById);
-// app.delete('/users/:id', users.deleteUserById);
 app.delete('/users', users.deleteUserById);
 app.put('/users/:id', users.updateUserById);
 
@@ -65,7 +64,6 @@ app.get('/cvs', cvs.getAllCVs);
 app.post('/cvs', cvs.createCV);
 app.get('/cvs/:id', cvs.getCVById);
 app.get('/cvs/user/:id', cvs.getCVByUserId);
-// app.delete('/cvs/:id', cvs.deleteCVById);
 app.delete('/cvs', cvs.deleteCVByUserId);
 app.put('/cvs/:id', cvs.updateCVById);
 app.get('/search/cvs', cvs.getCVByTag);
@@ -74,7 +72,6 @@ app.get('/companies', companies.getAllCompanies);
 app.post('/companies', companies.createCompany); 
 app.get('/companies/:id', companies.getCompanyById);
 app.get('/companies/user/:id', companies.getCompanyByUserId);
-// app.delete('/companies/:id', companies.deleteCompanyById);
 app.delete('/companies', companies.deleteCompanyByUserId);
 app.put('/companies/:id', companies.updateCompanyById);
 app.get('/search/companies', companies.getCompanyByTag);
