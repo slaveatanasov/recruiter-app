@@ -1,0 +1,23 @@
+{
+  "name": "recr_backend",
+  "version": "1.0.0",
+  "description": "Recruiter Web App (Semos Project)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Slave Atanasov",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.0.0",
+    "express-jwt": "^5.3.1",
+    "fastest-validator": "^0.6.12",
+    "fs": "0.0.1-security",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.14"
+  }
+}
