@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var jwt = require('express-jwt');
+var path = require('path');
 var fileUpload = require('express-fileupload');
 
 var tokenSecret = require('./config/keys').tokenSecret;
@@ -86,5 +87,15 @@ app.use((err, req, res, next) => {
         res.status(401).send('Invalid token.');
     }
 });
+
+//Server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+    //Set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 app.listen(80);
