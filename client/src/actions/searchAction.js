@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getCVsSearchResults = (searchData) => dispatch => {
-    axios.get('http://127.0.0.1:80/search/cvs?tags=' + searchData)
+    axios.get('http://127.0.0.1:5000/search/cvs?tags=' + searchData)
     .then(res => {
         dispatch(searchResultsCVs(res.data));
     })
@@ -22,7 +22,7 @@ export const searchResultsCVs = (cvs) => {
 }
 
 export const getCompaniesSearchResults = (searchData) => dispatch => {
-    axios.get('http://127.0.0.1:80/search/companies?tags=' + searchData)
+    axios.get('http://127.0.0.1:5000/search/companies?tags=' + searchData)
     .then(res => {
         dispatch(searchResultsCompanies(res.data));
     })

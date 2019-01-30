@@ -8,7 +8,7 @@ export class EditCompany extends React.Component {
 
     componentDidMount() {
 		const { id } = this.props.match.params;
-		axios.get(`http://127.0.0.1:80/companies/user/${id}`)
+		axios.get(`http://127.0.0.1:5000/companies/user/${id}`)
         .then((company) => {
 		this.setState(() => ({ ...this.state, company: company.data}))
       })
@@ -19,7 +19,7 @@ export class EditCompany extends React.Component {
     submitForm = (e) => {
 		let company = this.state;
 		const id = this.state.company._id;
-		axios.put(`http://127.0.0.1:80/companies/${id}`, company)
+		axios.put(`http://127.0.0.1:5000/companies/${id}`, company)
 		.then(res => this.props.history.push('/dashboard'))
 		.catch(err => console.log(err.response.data))	
     }

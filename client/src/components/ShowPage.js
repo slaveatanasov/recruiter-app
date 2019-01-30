@@ -13,13 +13,13 @@ export class ShowPage extends React.Component {
 	componentDidMount() {
 		if (this.props.auth.user.type === "company") {
 			const { id } = this.props.match.params;
-			axios.get(`http://127.0.0.1:80/cvs/${id}`)
+			axios.get(`http://127.0.0.1:5000/cvs/${id}`)
 			.then((res) => {
 				this.setState(() => ({ cv: res.data }))
 			})
 		} else {
 			const { id } = this.props.match.params;
-			axios.get(`http://127.0.0.1:80/companies/${id}`)
+			axios.get(`http://127.0.0.1:5000/companies/${id}`)
 				.then((res) => {
 					this.setState(() => ({ company: res.data }))
 				})

@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from '../utils/setAuthToken';
 
 export const registerNewUser = (userData, history) => dispatch => {
-    axios.post('http://127.0.0.1:80/users', userData)
+    axios.post('http://127.0.0.1:5000/users', userData)
     .then(res => history.push('/login'))
     // .catch(err => console.log(err.response.data));
     .catch(err => 
@@ -16,7 +16,7 @@ export const registerNewUser = (userData, history) => dispatch => {
 }
 
 export const loginUser = (userData) => dispatch => {
-    axios.post('http://127.0.0.1:80/auth/login', userData)
+    axios.post('http://127.0.0.1:5000/auth/login', userData)
     .then(res => {
         //Save token to localStorage.
         const token = res.data;
@@ -57,7 +57,7 @@ export const logoutUser = () => dispatch => {
 }
 
 export const updateUser = (userData, history) => dispatch => {
-    axios.put(`http://127.0.0.1:80/users/${userData.id}`, userData)
+    axios.put(`http://127.0.0.1:5000/users/${userData.id}`, userData)
     .then(res => {
         delete userData.password;
         dispatch(setUpdatedUser(userData));
@@ -83,7 +83,7 @@ export const setUpdatedUser = (updatedUser) => {
 
 export const deleteUser = (history) => dispatch => {
     if (window.confirm('Are you sure? This cannot be undone!' )) {
-        axios.delete('http://127.0.0.1:80/users')
+        axios.delete('http://127.0.0.1:5000/users')
         .then(res => {
             dispatch(setCurrentUser({}));
         })

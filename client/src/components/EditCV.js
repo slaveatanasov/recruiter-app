@@ -8,7 +8,7 @@ export class EditCV extends React.Component {
 
 	componentDidMount() {
 		const { id } = this.props.match.params;
-		axios.get(`http://127.0.0.1:80/cvs/user/${id}`)
+		axios.get(`http://127.0.0.1:5000/cvs/user/${id}`)
       .then((cv) => {
 		this.setState(() => ({ ...this.state, cv: cv.data}))
 	  })
@@ -19,7 +19,7 @@ export class EditCV extends React.Component {
 	submitForm = (e) => {
 		let cv = this.state;
 		const id = this.state.cv._id;
-		axios.put(`http://127.0.0.1:80/cvs/${id}`, cv)
+		axios.put(`http://127.0.0.1:5000/cvs/${id}`, cv)
 		.then(res => this.props.history.push('/dashboard'))
 		.catch(err => console.log(err.response.data))
 	}
