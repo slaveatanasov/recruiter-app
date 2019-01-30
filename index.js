@@ -7,7 +7,7 @@ var fileUpload = require('express-fileupload');
 var tokenSecret = require('./config/keys').tokenSecret;
 var mongodb = require('./db/mongodb');
 
-var root = require('./handlers/root');
+// var root = require('./handlers/root');
 var auth = require('./handlers/auth');
 var users = require('./handlers/users');
 var cvs = require('./handlers/cvs');
@@ -48,7 +48,7 @@ app.use(fileUpload({
 }));
 
 // Routes.
-app.get('/', root);
+// app.get('/', root);
 
 app.post('/auth/login', auth.login);
 app.get('/auth/logout', auth.logout);
