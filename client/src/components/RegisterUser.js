@@ -19,10 +19,8 @@ export class RegisterUser extends React.Component {
 			password: "",
 			errors: ""
 		}
-
 		this.addNotification = this.addNotification.bind(this);
 		this.notificationDOMRef = React.createRef();	
-
 	}
 
 	componentDidMount() {

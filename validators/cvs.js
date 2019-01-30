@@ -1,5 +1,3 @@
-// Commented pairs bring up error during validation.
-
 var cvCreate = {
     first_name: {type: "string", empty: false},
     last_name: {type: "string", empty: false},

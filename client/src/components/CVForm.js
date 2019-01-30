@@ -43,7 +43,6 @@ export class CVForm extends React.Component {
 		let cv = {...this.state};
 		cv.location_zip_code = parseInt(cv.location_zip_code);
 		axios.post('http://127.0.0.1:80/cvs', cv)
-		.then (res => console.log(res))
 		.then(res => this.props.history.push('/dashboard'))
 		.catch(err => console.log(err.response.data));
 	}

@@ -42,13 +42,10 @@ export class Login extends React.Component {
 			password: "",
 			errors: ""
 			};
-
 			this.addNotification = this.addNotification.bind(this);
 			this.notificationDOMRef = React.createRef();	
 	}
 	
-	
-
 	componentDidMount() {
 		if (this.props.auth.isAuthenticated) {
 			this.props.history.push('/dashboard');
@@ -82,8 +79,6 @@ export class Login extends React.Component {
 			password: this.state.password
 		};
 		this.props.loginUser(user);
-		// console.log(this.state.errors);
-	
 	}
 
 	addNotification(message) {

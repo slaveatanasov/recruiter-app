@@ -2,7 +2,6 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var validator = require('fastest-validator');
 var tokenSecret = require('../config/keys').tokenSecret;
-
 var users = require('../models/users');
 var validatorSchema = require('../validators/users');
 var v = new validator();

@@ -1,5 +1,4 @@
 var validator = require('fastest-validator');
-
 var companies = require('../models/companies');
 var validatorSchema = require('../validators/companies');
 var v = new validator();

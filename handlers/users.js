@@ -1,10 +1,8 @@
 var bcrypt = require('bcryptjs');
 var validator = require('fastest-validator');
-
 var cvs = require('../models/cvs');
 var companies = require('../models/companies');
 var users = require('../models/users');
-
 var validatorSchema = require('../validators/users');
 let v = new validator({
     messages: {
@@ -77,7 +75,6 @@ var createUser = (req, res) => {
         });
     } else {
         var error = valid;
-        console.log(error);
         res.status(400).send(error);
     }
 };
@@ -107,24 +104,6 @@ var updateUserById = (req, res) => {
         }
     });
 };
-
-// // Delete user in database by _id.
-// var deleteUserById = (req, res) => {
-//     var id = req.user.id;
-//     users.deleteUserById(id, (err) => {
-//         if(err){
-//             res.status(500).send(err)
-//         } else {
-//             cvs.deleteCVByUserId(id, (err) => {
-//                 if(err) {
-//                     return res.status(500).send(err);
-//                 } else {
-//                     return res.send("User and CV deleted.");
-//                 }
-//             })
-//         }
-//     });
-// };
 
 // Delete user in database by _id.
 var deleteUserById = (req, res) => {

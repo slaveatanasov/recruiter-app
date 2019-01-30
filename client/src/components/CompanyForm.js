@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
 export class CompanyForm extends React.Component {
     constructor() {
         super();
@@ -41,9 +40,8 @@ export class CompanyForm extends React.Component {
         company.company_information_no_of_employees = parseInt(company.company_information_no_of_employees);
         company.company_information_expected_hires_per_year = parseInt(company.company_information_expected_hires_per_year);
 		axios.post('http://127.0.0.1:80/companies', company)
-        .then (res => console.log(res))
         .then(res => this.props.history.push('/dashboard'))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err.response.data));
     }
 
     render() {

@@ -20,9 +20,8 @@ export class EditCompany extends React.Component {
 		let company = this.state;
 		const id = this.state.company._id;
 		axios.put(`http://127.0.0.1:80/companies/${id}`, company)
-		.then(res => console.log(res))
 		.then(res => this.props.history.push('/dashboard'))
-		.catch(err => console.log(err))	
+		.catch(err => console.log(err.response.data))	
     }
     
     render() {

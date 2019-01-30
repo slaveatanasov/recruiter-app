@@ -4,7 +4,6 @@ import setAuthToken from '../utils/setAuthToken';
 
 export const registerNewUser = (userData, history) => dispatch => {
     axios.post('http://127.0.0.1:80/users', userData)
-    .then(res => console.log(res.data))
     .then(res => history.push('/login'))
     // .catch(err => console.log(err.response.data));
     .catch(err => 
@@ -31,7 +30,6 @@ export const loginUser = (userData) => dispatch => {
         dispatch(setCurrentUser(decodedToken));
     })
     .catch(err => {
-        console.log(err.response.data);
         dispatch({
             type: 'GET_ERRORS',
             // payload: err.response.data
@@ -59,10 +57,8 @@ export const logoutUser = () => dispatch => {
 }
 
 export const updateUser = (userData, history) => dispatch => {
-    console.log(userData);
     axios.put(`http://127.0.0.1:80/users/${userData.id}`, userData)
     .then(res => {
-        console.log(res.data);
         delete userData.password;
         dispatch(setUpdatedUser(userData));
     })
@@ -93,7 +89,10 @@ export const deleteUser = (history) => dispatch => {
         })
         .then(res => history.push('/login'))
         .catch(err => {
-            console.log(err)
-        })
+            dispatch({
+                type: 'GET_ERRORS',
+                payload: err.response.data
+            })
+        });
     }
 }

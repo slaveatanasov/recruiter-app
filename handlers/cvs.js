@@ -1,5 +1,4 @@
 var validator = require('fastest-validator');
-
 var cvs = require('../models/cvs');
 var validatorSchema = require('../validators/cvs');
 var v = new validator();
@@ -7,22 +6,14 @@ var v = new validator();
 
 // Validate if required fields are filled, format the dates, associate CV profile in database with current user, add CV to database.
 var createCV = (req, res) => {
-    console.log("INSIDE CREATE CVS");
-    console.log(req.body);
     var valid = v.validate(req.body, validatorSchema.cvCreate);
-    console.log(valid);
     if(valid === true) {
-        console.log("INSIDE VALID");
         var userId = req.user.id;
-        console.log("BEFORE FORMAT DATES");
         var cvData = formatDates(req.body);
-        console.log("AFTER FORMAT DATES");
             cvData.userId = userId;
         var splitTags = [];
             splitTags = cvData.experience_tags.split(' ');
             cvData.experience_tags = splitTags;
-            console.log("AFTER CREATE CVS");
-            console.log(cvData);
         cvs.addCV(cvData, (err) => {
             if(err){
                 return res.status(500).send(err);
