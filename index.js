@@ -30,16 +30,16 @@ app.use((req, res, next) => {
     next()
 });
 
-app.use(jwt({
-        secret: tokenSecret
-    }).unless({
-        path: [
-            {url: '/', methods: ['GET']},
-            {url: '/auth/login', methods: ['POST']},
-            {url: '/users', methods: ['POST']}
-        ]
-    })
-);
+// app.use(jwt({
+//         secret: tokenSecret
+//     }).unless({
+//         path: [
+//             {url: '/', methods: ['GET']},
+//             {url: '/auth/login', methods: ['POST']},
+//             {url: '/users', methods: ['POST']}
+//         ]
+//     })
+// );
 
 app.use(fileUpload({
     limits: {
