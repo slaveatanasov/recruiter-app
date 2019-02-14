@@ -6,7 +6,7 @@ var v = new validator();
 // Validate if required fields are filled, format the dates, associate company profile in database with current user, add company to database.
 var createCompany = (req, res) => {
     var valid = v.validate(req.body, validatorSchema.companyCreate);
-    if(valid === true) {
+    if (valid === true) {
         var userId = req.user.id;
         var companyData = formatDates(req.body);
             companyData.userId = userId;
@@ -28,7 +28,7 @@ var createCompany = (req, res) => {
 // Retrieve all companies from database.
 var getAllCompanies = (req, res) => {
     companies.getAllCompanies((err, data) => {
-        if(err){
+        if (err){
             res.status(500).send("Internal server error! " + err);
         } else {
             res.send(data);
@@ -40,7 +40,7 @@ var getAllCompanies = (req, res) => {
 var getCompanyById = (req, res) => {
     var id = req.params.id;
     companies.getCompanyById(id, (err, data) => {
-        if(err){
+        if (err){
             res.status(404).send("Company not found.");
         } else {
             res.send(data);
@@ -52,7 +52,7 @@ var getCompanyById = (req, res) => {
 var getCompanyByUserId = (req, res) => {
     var id = req.params.id;
     companies.getCompanyByUserId(id, (err, data) => {
-        if(err) {
+        if (err) {
             return res.status(500).send(err);
         } else {
             return res.send(data);
@@ -65,7 +65,7 @@ var getCompanyByTag = (req, res) => {
     var tags = [];
     tags = req.query.tags.split(' ');
     companies.getCompanyByTag(tags, (err, data) => {
-        if(err) {
+        if (err) {
             return res.status(500).send(err);
         } else {
             return res.send(data);
@@ -100,7 +100,7 @@ var updateCompanyById = (req, res) => {
 var deleteCompanyById = (req, res) => {
     var id = req.params.id;
     companies.deleteCompanyById(id, (err) => {
-        if(err) {
+        if (err) {
             return res.status(500).send(err);
         } else {
             return res.send("Company deleted.");
@@ -112,7 +112,7 @@ var deleteCompanyById = (req, res) => {
 var deleteCompanyByUserId = (req, res) => {
     var id = req.user.id;
     cvs.deleteCompanyByUserId(id, (err) => {
-        if(err) {
+        if (err) {
             return res.status(500).send(err);
         } else {
             return res.send("Company deleted.");
@@ -122,7 +122,7 @@ var deleteCompanyByUserId = (req, res) => {
 
 // Format the date for entry in database as ISOString.
 var formatDates = (companyData) => {
-    if(companyData.established != undefined && companyData.established != null){
+    if (companyData.established != undefined && companyData.established != null) {
         companyData.established = new Date(companyData.established);
     } return companyData;
 };

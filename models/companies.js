@@ -29,7 +29,7 @@ var Companies = mongoose.model(
 
 var addCompany = (data, cb) => {
     var company = new Companies(data);
-    company.save((err, data) => {
+    company.save((err) => {
         if(err){
             return cb(err);
         } else {

@@ -14,7 +14,7 @@ let v = new validator({
 // Retrieve all users from database.
 var getAllUsers = (req, res) => {
     users.getAllUsers((err, data) => {
-        if(err){
+        if (err){
             res.status(500).send("Internal server error! " + err);
         } else {
             res.send(data);
@@ -26,7 +26,7 @@ var getAllUsers = (req, res) => {
 var getUserById = (req, res) => {
     var id = req.params.id;
     users.getUserById(id, (err, data) => {
-        if(err){
+        if (err){
             res.status(404).send("User not found.");
         } else {
             res.send(data);
@@ -38,7 +38,7 @@ var getUserById = (req, res) => {
 var getUserByType = (req, res) => {
     var userType = req.body.type;
     users.getUserByType(userType, (err, data) => {
-        if(err){
+        if (err){
             res.status(404).send("User not found.");
         } else {
             res.send(data);
@@ -50,7 +50,7 @@ var getUserByType = (req, res) => {
 var createUser = (req, res) => {
     const errors = {};
     var valid = v.validate(req.body, validatorSchema.userCreate);
-    if(valid === true) {
+    if (valid === true) {
         users.getUserByEmail(req.body.email, (err, data) => {
             if (err) {
                 return res.send(err);
@@ -60,7 +60,7 @@ var createUser = (req, res) => {
                         var userData = req.body;
                         userData.password = hash;
                         users.createUser(userData, (err) => {
-                            if(err) {
+                            if (err) {
                                 res.send(err);
                             } else {
                                 res.status(201).send("User created.");
@@ -74,8 +74,7 @@ var createUser = (req, res) => {
             }
         });
     } else {
-        var error = valid;
-        res.status(400).send(error);
+        res.status(400).send(valid[0].message);
     }
 };
 
@@ -91,7 +90,7 @@ var updateUserById = (req, res) => {
                     var userData = req.body;
                     userData.password = hash;
                     users.updateUserById(id, userData, (err) => {
-                        if(err) {
+                        if (err) {
                             return res.status(500).send(err);
                         } else {
                             return res.send("User info updated.");
@@ -109,7 +108,7 @@ var updateUserById = (req, res) => {
 var deleteUserById = (req, res) => {
     var id = req.user.id;
     users.deleteUserById(id, (err) => {
-        if(err){
+        if (err){
             res.status(500).send(err)
         } else {
             if (req.user.type === "applicant") {
@@ -122,7 +121,7 @@ var deleteUserById = (req, res) => {
                 })
             } else {
                 companies.deleteCompanyByUserId(id, (err) => {
-                    if(err) {
+                    if (err) {
                         return res.status(500).send(err);
                     } else {
                         return res.send("User account and company profile deleted.");
@@ -137,7 +136,7 @@ var deleteUserById = (req, res) => {
 var getCurrentUserById = (req, res) => {
     var id = req.user.id; 
     users.getUserById(id, (err, data) => {
-        if(err){
+        if (err){
             res.status(500).send(err)
         } else {
             res.status(200).send(data);

@@ -18,7 +18,7 @@ var companyCreate = {
     opportunities_HR: {type: "string", optional: true},
     opportunities_amenities: {type: "string", optional: true},
     opportunities_current_openings: {type: "string", optional: true}
-};
+    };
 
 module.exports = {
     companyCreate

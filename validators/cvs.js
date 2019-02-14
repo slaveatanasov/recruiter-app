@@ -23,7 +23,7 @@ var cvCreate = {
     skills_communication_skills: {type: "string", empty: false},
     skills_organizational_skills: {type: "string", empty: false},
     skills_digital_skills: {type: "string", empty: false}
-    }
+    };
 
 module.exports = {
     cvCreate

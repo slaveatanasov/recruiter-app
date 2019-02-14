@@ -21,7 +21,7 @@ export class EditCV extends React.Component {
 		const id = this.state.cv._id;
 		axios.put(`http://127.0.0.1:5000/cvs/${id}`, cv)
 		.then(res => this.props.history.push('/dashboard'))
-		.catch(err => console.log(err.response.data))
+		.catch(err => console.log(err))
 	}
 
   render() {

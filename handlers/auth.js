@@ -20,7 +20,7 @@ var login = (req, res) => {
             }
             bcrypt.compare(req.body.password, userData.password)
             .then((valid) => {
-                if(valid) {
+                if (valid) {
                     var ud = {
                         id: userData._id,
                         email: userData.email,
@@ -35,7 +35,7 @@ var login = (req, res) => {
                     return res.status(403).send(errors);
                 }
             }).catch((err) => {
-                errors = "Internal server error. ";
+                errors = "Internal server error.";
                 return res.status(500).send(errors);
             })
         });

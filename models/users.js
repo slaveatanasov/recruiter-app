@@ -54,7 +54,7 @@ var getUserById = (id, cb) => {
 
 var createUser = (userData, cb) => {
     let user = new Users(userData);
-    user.save((err, data) => {           
+    user.save((err) => {           
         if(err) {
             return cb(err);
         } else {

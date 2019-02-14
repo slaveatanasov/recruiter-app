@@ -7,7 +7,7 @@ var fileUpload = require('express-fileupload');
 var tokenSecret = require('./config/keys').tokenSecret;
 var mongodb = require('./db/mongodb');
 
-// var root = require('./handlers/root');
+var root = require('./handlers/root');
 var auth = require('./handlers/auth');
 var users = require('./handlers/users');
 var cvs = require('./handlers/cvs');
@@ -30,30 +30,29 @@ app.use((req, res, next) => {
     next()
 });
 
-// app.use(jwt({
-//         secret: tokenSecret
-//     }).unless({
-//         path: [
-//             {url: '/', methods: ['GET']},
-//             {url: '/auth/login', methods: ['POST']},
-//             {url: '/users', methods: ['POST']}
-//         ]
-//     })
-// );
+app.use(jwt({
+        secret: tokenSecret
+    }).unless({
+        path: [
+            {url: '/', methods: ['GET']},
+            {url: '/auth/login', methods: ['POST']},
+            {url: '/users', methods: ['POST']}
+        ]
+    })
+);
 
 app.use(fileUpload({
     limits: {
-        fileSize: 1000000 //Bytes = 1MB
+        fileSize: 1000000
     }
 }));
 
-// Routes.
-// app.get('/', root);
+// ROUTES
+app.get('/', root);
 
 app.post('/auth/login', auth.login);
 app.get('/auth/logout', auth.logout);
 
-app.get('/current', users.getCurrentUserById); //For testing purposes.
 app.get('/users', users.getAllUsers);
 app.post('/users', users.createUser);
 app.get('/users/:id', users.getUserById);
@@ -85,21 +84,21 @@ app.use((err, req, res, next) => {
     }
 });
 
-//Server static assets if in production
+// Server static assets if in production:
 if (process.env.NODE_ENV === 'production') {
-    //Set static folder
+    //Set static folder:
     app.use(express.static('client/build'));
-
-    app.use(jwt({
-        secret: tokenSecret
-    }).unless({
-        path: [
-            {url: '/', methods: ['GET']},
-            {url: '/auth/login', methods: ['POST']},
-            {url: '/users', methods: ['POST']}
-        ]
-    })
-    );
+    
+    // app.use(jwt({
+    //     secret: tokenSecret
+    // }).unless({
+    //     path: [
+    //         {url: '/', methods: ['GET']},
+    //         {url: '/auth/login', methods: ['POST']},
+    //         {url: '/users', methods: ['POST']}
+    //     ]
+    // })
+    // );
     
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
@@ -108,4 +107,4 @@ if (process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => console.log(`Server running on port ${port}.`));

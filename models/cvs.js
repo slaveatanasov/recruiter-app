@@ -32,9 +32,7 @@ var CVS = mongoose.model(
 );
 
 var addCV = (data, cb) => {
-    console.log(data);
     var cv = new CVS(data);
-    console.log(cv);
     cv.save((err) => {
         if(err){
             return cb(err);
