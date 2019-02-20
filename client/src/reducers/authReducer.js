@@ -1,7 +1,7 @@
 import isEmpty from '../utils/isEmptyValidation';
 
 const initialState = {
-    isAuthenticatsed: false,
+    isAuthenticated: false,
     user: {}
 }
 
