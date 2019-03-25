@@ -1,25 +1,25 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var jwt = require('express-jwt');
-var path = require('path');
-var fileUpload = require('express-fileupload');
+const express = require('express');
+const bodyParser = require('body-parser');
+const jwt = require('express-jwt');
+const path = require('path');
+const fileUpload = require('express-fileupload');
 
-var tokenSecret = require('./config/keys').tokenSecret;
-var mongodb = require('./db/mongodb');
+const tokenSecret = require('./config/keys').tokenSecret;
+const mongodb = require('./db/mongodb');
 
-var root = require('./handlers/root');
-var auth = require('./handlers/auth');
-var users = require('./handlers/users');
-var cvs = require('./handlers/cvs');
-var companies = require('./handlers/companies');
-var upload = require('./handlers/upload');
+const auth = require('./handlers/auth');
+const users = require('./handlers/users');
+const cvs = require('./handlers/cvs');
+const companies = require('./handlers/companies');
+const upload = require('./handlers/upload');
 
 mongodb.init();
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
 
+// CORS Setup
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -48,8 +48,6 @@ app.use(fileUpload({
 }));
 
 // ROUTES
-app.get('/', root);
-
 app.post('/auth/login', auth.login);
 app.get('/auth/logout', auth.logout);
 

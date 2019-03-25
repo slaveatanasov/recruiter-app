@@ -1,9 +1,9 @@
 //Not used thus far in the project.
-var bucket = '../bucket/';
-var bucketProfileImg = '../bucket/profile_images';
-var bucketDocuments = '../bucket/documents';
-var allowedImageTypes = ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png'];
-var allowedDocumentTypes = ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf', 'text/plain'];
+const bucket = '../bucket/';
+const bucketProfileImg = '../bucket/profile_images';
+const bucketDocuments = '../bucket/documents';
+const allowedImageTypes = ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png'];
+const allowedDocumentTypes = ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf', 'text/plain'];
 
 var uploadProfileImage = (req, res) => {
     if (req.files.doc.mimetype.split('/')[0] == 'image') {

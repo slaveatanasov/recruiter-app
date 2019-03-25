@@ -1,9 +1,9 @@
-var bcrypt = require('bcryptjs');
-var validator = require('fastest-validator');
-var cvs = require('../models/cvs');
-var companies = require('../models/companies');
-var users = require('../models/users');
-var validatorSchema = require('../validators/users');
+const bcrypt = require('bcryptjs');
+const validator = require('fastest-validator');
+const cvs = require('../models/cvs');
+const companies = require('../models/companies');
+const users = require('../models/users');
+const validatorSchema = require('../validators/users');
 let v = new validator({
     messages: {
         stringMin: "Password must be between 8 and 32 characters.",
@@ -14,7 +14,7 @@ let v = new validator({
 // Retrieve all users from database.
 var getAllUsers = (req, res) => {
     users.getAllUsers((err, data) => {
-        if (err){
+        if (err) {
             res.status(500).send("Internal server error! " + err);
         } else {
             res.send(data);
@@ -26,7 +26,7 @@ var getAllUsers = (req, res) => {
 var getUserById = (req, res) => {
     var id = req.params.id;
     users.getUserById(id, (err, data) => {
-        if (err){
+        if (err) {
             res.status(404).send("User not found.");
         } else {
             res.send(data);
@@ -38,7 +38,7 @@ var getUserById = (req, res) => {
 var getUserByType = (req, res) => {
     var userType = req.body.type;
     users.getUserByType(userType, (err, data) => {
-        if (err){
+        if (err) {
             res.status(404).send("User not found.");
         } else {
             res.send(data);
@@ -136,7 +136,7 @@ var deleteUserById = (req, res) => {
 var getCurrentUserById = (req, res) => {
     var id = req.user.id; 
     users.getUserById(id, (err, data) => {
-        if (err){
+        if (err) {
             res.status(500).send(err)
         } else {
             res.status(200).send(data);

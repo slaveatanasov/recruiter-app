@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
-var db = require('../config/keys').mongoURI;
+const mongoose = require('mongoose');
+const db = require('../config/keys').mongoURI;
 
 const options = {
     useNewUrlParser: true
 }
 
-var init = () => { 
+const init = () => { 
     mongoose.connect(db, options)
     .then((conn) => {
         console.log('Connected to MongoDB.');

@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var CVS = mongoose.model(
+const CVS = mongoose.model(
     'cvs', 
     new mongoose.Schema({
         "userId": String,
@@ -31,10 +31,10 @@ var CVS = mongoose.model(
    })
 );
 
-var addCV = (data, cb) => {
-    var cv = new CVS(data);
+let addCV = (data, cb) => {
+    let cv = new CVS(data);
     cv.save((err) => {
-        if(err){
+        if(err) {
             return cb(err);
         } else {
             return cb(null);
@@ -42,9 +42,9 @@ var addCV = (data, cb) => {
     });
 };
 
-var getAllCVs = (cb) => {
+let getAllCVs = (cb) => {
     CVS.find({}, (err, data) => {
-        if(err){
+        if(err) {
             return cb(err, null);
         } else {
             return cb(null, data);
@@ -52,7 +52,7 @@ var getAllCVs = (cb) => {
     });
 };
 
-var getCVById = (id, cb) => {
+let getCVById = (id, cb) => {
     CVS.findOne({_id: id}, (err, data) => {
         if(err) {
             return cb(err, null);
@@ -62,7 +62,7 @@ var getCVById = (id, cb) => {
     });
 };
 
-var getCVByTag = (tags, cb) => {
+let getCVByTag = (tags, cb) => {
     CVS.find({"experience_tags": {$in: tags}}, (err, data) => {
         if(err) {
             return cb(err, null);
@@ -72,7 +72,7 @@ var getCVByTag = (tags, cb) => {
     });
 };
 
-var getCVByUserId = (id, cb) => {
+let getCVByUserId = (id, cb) => {
     CVS.findOne({userId: id}, (err, data) => {
         if(err) {
             return cb(err, null);
@@ -82,9 +82,9 @@ var getCVByUserId = (id, cb) => {
     });
 };
 
-var updateCVById = (id, data, cb) => {
+let updateCVById = (id, data, cb) => {
     CVS.updateOne({_id: id}, data, (err) => {
-        if(err){
+        if(err) {
             return cb(err)
         } else {
             return cb(null);
@@ -92,9 +92,9 @@ var updateCVById = (id, data, cb) => {
     });
 };
 
-var deleteCVById = (id, cb) => {
+let deleteCVById = (id, cb) => {
     CVS.deleteOne({_id: id}, (err) => {
-        if(err){
+        if(err) {
             return cb(err);
         } else {
             return cb(null);
@@ -102,9 +102,9 @@ var deleteCVById = (id, cb) => {
     });
 };
 
-var deleteCVByUserId = (id, cb) => {
+let deleteCVByUserId = (id, cb) => {
     CVS.deleteOne({userId: id}, (err) => {
-        if(err){
+        if(err) {
             return cb(err);
         } else {
             return cb(null);

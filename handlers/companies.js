@@ -1,7 +1,7 @@
-var validator = require('fastest-validator');
-var companies = require('../models/companies');
-var validatorSchema = require('../validators/companies');
-var v = new validator();
+const validator = require('fastest-validator');
+const companies = require('../models/companies');
+const validatorSchema = require('../validators/companies');
+const v = new validator();
 
 // Validate if required fields are filled, format the dates, associate company profile in database with current user, add company to database.
 var createCompany = (req, res) => {

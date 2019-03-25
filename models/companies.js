@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Companies = mongoose.model(
+const Companies = mongoose.model(
     'companies', 
     new mongoose.Schema({
         "company_name": String,
@@ -27,10 +27,10 @@ var Companies = mongoose.model(
    })
 );
 
-var addCompany = (data, cb) => {
+let addCompany = (data, cb) => {
     var company = new Companies(data);
     company.save((err) => {
-        if(err){
+        if(err) {
             return cb(err);
         } else {
             return cb(null);
@@ -38,9 +38,9 @@ var addCompany = (data, cb) => {
     });
 };
 
-var getAllCompanies = (cb) => {
+let getAllCompanies = (cb) => {
     Companies.find({}, (err, data) => {
-        if(err){
+        if(err) {
             return cb(err, null);
         } else {
             return cb(null, data);
@@ -48,7 +48,7 @@ var getAllCompanies = (cb) => {
     });
 };
 
-var getCompanyById = (id, cb) => {
+let getCompanyById = (id, cb) => {
     Companies.findOne({_id: id}, (err, data) => {
         if(err) {
             return cb(err, null);
@@ -58,9 +58,9 @@ var getCompanyById = (id, cb) => {
     });
 };
 
-var updateCompanyById = (id, data, cb) => {
+let updateCompanyById = (id, data, cb) => {
     Companies.updateOne({_id: id}, data, (err) => {
-        if(err){
+        if(err) {
             return cb(err)
         } else {
             return cb(null);
@@ -68,9 +68,9 @@ var updateCompanyById = (id, data, cb) => {
     });
 };
 
-var deleteCompanyById = (id, cb) => {
+let deleteCompanyById = (id, cb) => {
     Companies.deleteOne({_id: id}, (err) => {
-        if(err){
+        if(err) {
             return cb(err);
         } else {
             return cb(null);
@@ -78,7 +78,7 @@ var deleteCompanyById = (id, cb) => {
     });
 };
 
-var getCompanyByTag = (tags, cb) => {
+let getCompanyByTag = (tags, cb) => {
     Companies.find({"company_information_tags": {$in: tags}}, (err, data) => {
         if(err) {
             return cb(err, null);
@@ -88,7 +88,7 @@ var getCompanyByTag = (tags, cb) => {
     });
 };
 
-var getCompanyByUserId = (id, cb) => {
+let getCompanyByUserId = (id, cb) => {
     Companies.findOne({userId: id}, (err, data) => {
         if(err) {
             return cb(err, null);
@@ -98,9 +98,9 @@ var getCompanyByUserId = (id, cb) => {
     });
 };
 
-var deleteCompanyByUserId = (id, cb) => {
+let deleteCompanyByUserId = (id, cb) => {
     Companies.deleteOne({userId: id}, (err) => {
-        if(err){
+        if(err) {
             return cb(err);
         } else {
             return cb(null);

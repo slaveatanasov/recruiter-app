@@ -1,4 +1,4 @@
-var userCreate = {
+let userCreate = {
     first_name: {type: 'string', empty: false},
     last_name: {type: 'string', empty: false},
     email: {type: 'email', empty: false},
@@ -6,7 +6,7 @@ var userCreate = {
     type: {type: 'string', empty: false}
 };
 
-var userLogin = {
+let userLogin = {
     email: {type: 'email', empty: false},
     password: {type: 'string', empty: false}
 };

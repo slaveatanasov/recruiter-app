@@ -1,10 +1,10 @@
-var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
-var validator = require('fastest-validator');
-var tokenSecret = require('../config/keys').tokenSecret;
-var users = require('../models/users');
-var validatorSchema = require('../validators/users');
-var v = new validator();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const validator = require('fastest-validator');
+const tokenSecret = require('../config/keys').tokenSecret;
+const users = require('../models/users');
+const validatorSchema = require('../validators/users');
+const v = new validator();
 
 // Get user from database by email, validate if email exists. Compare password, and get JSON Web Token by entering user data and secret code as parameters.
 // Token is retrieved and used as: "Bearer " plus the token.

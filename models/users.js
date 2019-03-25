@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Users = mongoose.model(
+const Users = mongoose.model(
     'users',
     new mongoose.Schema({
         "first_name": String,
@@ -12,9 +12,9 @@ var Users = mongoose.model(
     })
 );
 
-var getAllUsers = (cb) => {
+let getAllUsers = (cb) => {
     Users.find({}, {password: 0}, (err, data) => {
-        if(err){
+        if(err) {
             return cb(err, null);
         } else {
             return cb(null, data);
@@ -22,9 +22,9 @@ var getAllUsers = (cb) => {
     });
 };
 
-var getUserByEmail = (email, cb) => {
+let getUserByEmail = (email, cb) => {
     Users.findOne({email: email}, (err, data) => {
-        if(err){
+        if(err) {
             return cb(err, null);
         } else {
             return cb(null, data);
@@ -32,9 +32,9 @@ var getUserByEmail = (email, cb) => {
     });
 };
 
-var getUserByType = (type, cb) => {
+let getUserByType = (type, cb) => {
     Users.find({type: type}, {password: 0}, (err, data) => {
-        if(err){
+        if(err) {
             return cb(err, null);
         } else {
             return cb(null, data);
@@ -42,9 +42,9 @@ var getUserByType = (type, cb) => {
     });
 };
 
-var getUserById = (id, cb) => {
+let getUserById = (id, cb) => {
     Users.findById(id, {password: 0}, (err, data) => {
-        if(err){
+        if(err) {
             return cb(err, null);
         } else {
             return cb(null, data);
@@ -52,7 +52,7 @@ var getUserById = (id, cb) => {
     });
 };
 
-var createUser = (userData, cb) => {
+let createUser = (userData, cb) => {
     let user = new Users(userData);
     user.save((err) => {           
         if(err) {
@@ -63,7 +63,7 @@ var createUser = (userData, cb) => {
     });
 };
 
-var deleteUserById = (id, cb) => {
+let deleteUserById = (id, cb) => {
     Users.deleteOne({_id: id}, (err) => {
         if (err) {
             return cb(err);
@@ -73,7 +73,7 @@ var deleteUserById = (id, cb) => {
     });
 };
 
-var updateUserById = (id, data, cb) => {
+let updateUserById = (id, data, cb) => {
     Users.updateOne({_id: id}, data, (err) => {
         if (err) {
             return cb(err);

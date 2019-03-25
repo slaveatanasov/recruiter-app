@@ -1,7 +1,7 @@
-var validator = require('fastest-validator');
-var cvs = require('../models/cvs');
-var validatorSchema = require('../validators/cvs');
-var v = new validator();
+const validator = require('fastest-validator');
+const cvs = require('../models/cvs');
+const validatorSchema = require('../validators/cvs');
+const v = new validator();
 
 
 // Validate if required fields are filled, format the dates, associate CV profile in database with current user, add CV to database.
